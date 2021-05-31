@@ -11,9 +11,12 @@ import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import kotlin.collections.ArrayList
 import android.R.raw
+import android.content.Intent
 import android.media.MediaPlayer
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -54,7 +57,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.toolbarEx.setNavigationOnClickListener {
             //when pressed the top level back button, it functions similarly to the back button
             //being pressed, returning to the immediate higher level view hierarchy
-            onBackPressed()
+            customDialogShow()
         }
         //this creates a text to speech object that says the name of the workout
         tts = TextToSpeech(this,this)
@@ -96,6 +99,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 //this new linear layout will display the exercise text and timer for 30 seconds
                 binding.llExerciseView.visibility = View.VISIBLE
                 //this function enables the exercise timer to start running
+
+                exerciseList!![currentExercisePosition].setIsSelected(true)
+                exerciseViewAdapter!!.notifyDataSetChanged()
                 setExerciseView()
             }
         }.start()
@@ -118,10 +124,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
             override fun onFinish() {
                 if(currentExercisePosition < exerciseList!!.size - 1) {
+                    exerciseList!![currentExercisePosition].setIsSelected(false)
+                    exerciseList!![currentExercisePosition].setIsCompleted(true)
+                    exerciseViewAdapter!!.notifyDataSetChanged()
                     setRestView()
                 } else {
-
+                    finish()
+                    startActivity(Intent(this@ExerciseActivity,FinishActivity::class.java))
                 }
+
             }
         }.start()
 
@@ -226,5 +237,36 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //this sets the adapter of recyclerview to the adapter object created above
         binding.rvExerciseStatus.adapter = exerciseViewAdapter
+    }
+
+    override fun onBackPressed() {
+        customDialogShow()
+    }
+
+    fun customDialogShow() {
+        val customDialog = AlertDialog.Builder(this)
+        customDialog.setTitle("Confirmation")
+        customDialog.setMessage("Do you want to confirm exit? Your progress will be lost.")
+        customDialog.setPositiveButton("No", null)
+        customDialog.setNegativeButton("Yes") { dialog, which ->
+
+            if(mediaPlayer!=null) {
+                mediaPlayer!!.stop()
+            }
+
+            if(tts!=null) {
+                tts!!.stop()
+            }
+
+            if(restTimer != null) {
+                restTimer!!.cancel()
+            }
+
+            finish()
+
+            startActivity(Intent(this,MainActivity::class.java))
+
+        }
+        customDialog.show()
     }
 }

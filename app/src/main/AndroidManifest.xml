@@ -10,10 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sevenly">
         <activity
-            android:name=".ExerciseActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".BMIActivity"
             android:exported="true" />
+        <activity
+            android:name=".FinishActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ExerciseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

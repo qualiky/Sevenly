@@ -3,15 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/btn_calculate.xml" value="0.2546875" />
+        <entry key="app/src/main/res/drawable/btn_finish.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/btn_progress.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/btn_started.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/circular_progress_gray.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/item_circular_accent_background.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/item_circular_background_gray.xml" value="0.2546875" />
+        <entry key="app/src/main/res/drawable/item_circular_background_orange.xml" value="0.2546875" />
+        <entry key="app/src/main/res/drawable/item_circular_background_orange_transp.xml" value="0.2546875" />
         <entry key="app/src/main/res/drawable/layer_list.xml" value="0.2546875" />
         <entry key="app/src/main/res/ic_background/activity_main.xml" value="0.22447916666666667" />
+        <entry key="app/src/main/res/layout/activity_bmi.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_exercise.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/activity_finish.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_exercise_status.xml" value="0.23854166666666668" />
       </map>

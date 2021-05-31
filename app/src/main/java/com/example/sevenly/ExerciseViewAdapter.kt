@@ -1,6 +1,7 @@
 package com.example.sevenly
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,16 @@ class ExerciseViewAdapter(
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val exercise = itemsArr[position]
         holder.tvItem.text = exercise.getId().toString()
+
+        if(!exercise.getIsSelected() && !exercise.getIsCompleted()) {
+            holder.tvItem.setBackgroundResource(R.drawable.item_circular_background_gray)
+        } else if (exercise.getIsSelected() && !exercise.getIsCompleted()) {
+            holder.tvItem.setBackgroundResource(R.drawable.item_circular_background_orange_transp)
+            holder.tvItem.setTextColor(Color.parseColor("#FFFFFF"))
+        } else if(!exercise.getIsSelected() && exercise.getIsCompleted()) {
+            holder.tvItem.setBackgroundResource(R.drawable.item_circular_background_orange)
+            holder.tvItem.setTextColor(Color.parseColor("#FFFFFF"))
+        }
     }
 
     override fun getItemCount(): Int {
